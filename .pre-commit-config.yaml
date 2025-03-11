@@ -1,0 +1,79 @@
+# .pre-commit-config.yaml
+
+# This is the configuration file for the pre-commit framework
+- repo: https://github.com/pre-commit/mirrors-eslint
+  rev: v8.18.0
+  hooks:
+    - id: trailing-whitespace
+      name: "Remove trailing whitespace"
+      description: "This hook removes trailing whitespace."
+    - id: end-of-file-fixer
+      name: "Ensure a newline at the end of the file"
+      description: "This hook ensures there's exactly one newline at the end of the file."
+
+- repo: https://github.com/pre-commit/mirrors-check-json
+  rev: v2.0.0
+  hooks:
+    - id: check-json
+      name: "Check JSON syntax"
+      description: "This hook checks the syntax of JSON files."
+
+- repo: https://github.com/pre-commit/mirrors-check-toml
+  rev: v0.4.0
+  hooks:
+    - id: check-toml
+      name: "Check TOML syntax"
+      description: "This hook checks the syntax of TOML files."
+
+- repo: https://github.com/pre-commit/mirrors-check-yaml
+  rev: v0.2.0
+  hooks:
+    - id: check-yaml
+      name: "Check YAML syntax"
+      description: "This hook checks the syntax of YAML files."
+
+- repo: https://github.com/pre-commit/mirrors-check-shebang
+  rev: v0.1.0
+  hooks:
+    - id: check-shebang
+      name: "Check for shebang"
+      description: "This hook ensures the correct shebang at the beginning of files."
+
+- repo: https://github.com/pre-commit/mirrors-terraform
+  rev: v0.10.0
+  hooks:
+    - id: terraform-fmt
+      name: "Terraform fmt"
+      description: "This hook ensures that Terraform files are formatted according to the Terraform style."
+      files: \.tf$
+
+- repo: https://github.com/terraform-docs/terraform-docs
+  rev: v0.16.0
+  hooks:
+    - id: terraform-docs
+      name: "Terraform docs"
+      description: "This hook automatically generates Terraform documentation."
+
+- repo: https://github.com/terraform-linters/tflint
+  rev: v0.29.0
+  hooks:
+    - id: tflint
+      name: "TFLint"
+      description: "This hook checks Terraform files for common mistakes using TFLint."
+      files: \.tf$
+
+- repo: https://github.com/aquasecurity/tfsec
+  rev: v1.17.0
+  hooks:
+    - id: tfsec
+      name: "tfsec"
+      description: "This hook runs tfsec, a security scanner for Terraform."
+      files: \.tf$
+
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.1.0
+  hooks:
+    - id: gitleaks
+      name: "Gitleaks"
+      description: "This hook scans for sensitive information in git repositories using Gitleaks."
+      args: ["--no-git", "--verbose"]
